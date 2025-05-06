@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '@/app/globals.css';
 import { AuthProvider } from '@/context/AuthContext';
+import { ToastContainer } from 'react-toastify';
 
 export const metadata = {
   title: 'سامانه نوبت‌دهی آرایشگاه',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           <main className="flex-grow p-4">{children}</main>
           <Footer />
         </AuthProvider>
+        <ToastContainer position="bottom-right" autoClose={3000} />
       </body>
     </html>
   );
