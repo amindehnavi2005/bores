@@ -14,7 +14,7 @@ const ContactPage = () => {
 
     return (
         <div className="p-4 max-w-lg mx-auto">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-lavender">تماس با ما</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-primary">تماس با ما</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <TextField
                     label="نام"
@@ -47,7 +47,7 @@ const ContactPage = () => {
                     variant="contained"
                     color="primary"
                     fullWidth
-                    className="bg-mint hover:bg-mint-dark"
+                    className="bg-secondary hover:bg-secondary-dark"
                 >
                     ارسال
                 </Button>

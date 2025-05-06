@@ -6,15 +6,10 @@
 
 @layer utilities {}
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
-  --lavender: #D9BCF2;
-  --periwinkle: #FEF4FF;
-  --mauve: #EEBFD9;
-  --bubblegum: #FFA6C3;
-  --mint: #D4F5DD;
-}
+} */
 
 @font-face {
   font-family: IRANSans;
@@ -82,20 +77,21 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-lavender: #D9BCF2;
-  --color-periwinkle: #FEF4FF;
-  --color-mauve: #EEBFD9;
-  --color-bubblegum: #FFA6C3;
-  --color-mint: #D4F5DD;
+  --color-primary: #1A1A1A;
+  --color-secondary: #4B4B4B;
+  --color-accent: #E24C3B;
+  --color-success: #4CAF50;
+  --color-warning: #fb8c00;
+  --color-error: #f44335;
+  --color-background: #F5F5F5;
+  --color-textPrimary: #FFFFFF;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */

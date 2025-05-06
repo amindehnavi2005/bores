@@ -27,7 +27,7 @@ const RegisterPage = () => {
 
     return (
         <div className="p-4 max-w-md mx-auto">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-lavender">ثبت‌نام</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-primary">ثبت‌نام</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <TextField
                     label="نام کاربری"
@@ -68,7 +68,7 @@ const RegisterPage = () => {
                     variant="contained"
                     color="primary"
                     fullWidth
-                    className="bg-mint hover:bg-mint-dark"
+                    className="bg-secondary hover:bg-secondary-dark"
                 >
                     ثبت‌نام
                 </Button>

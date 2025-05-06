@@ -1,7 +1,7 @@
 const AboutPage = () => {
     return (
         <div className="p-4 max-w-5xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-lavender">درباره ما</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-primary">درباره ما</h1>
             <div className="flex flex-col md:flex-row items-center gap-6">
                 <img
                     src="/assets/images/about-us.avif"
