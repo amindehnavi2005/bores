@@ -1,29 +1,25 @@
-"use client";
 import { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
+import { login } from '@/lib/routes/auth';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useContext(AuthContext);
+    const { login: setUser } = useContext(AuthContext);
     const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
-        if (response.ok) {
-            const userData = await response.json();
-            login(userData, userData.role);
+        try {
+            const data = await login({ username, password });
+            setUser(data.user, data.user.role || 'customer');
             router.push('/');
-        } else {
-            alert('ورود ناموفق');
+        } catch (error) {
+            // خطاها توسط Interceptor مدیریت می‌شوند
         }
     };
 

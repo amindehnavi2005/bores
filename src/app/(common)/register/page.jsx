@@ -1,7 +1,7 @@
-"use client";
 import { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import { register } from '@/lib/routes/auth';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
@@ -13,18 +13,14 @@ const RegisterPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            alert('رمز عبور و تکرار آن مطابقت ندارند');
+            toast.error('رمز عبور و تکرار آن مطابقت ندارند');
             return;
         }
-        const response = await fetch('/api/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, phone, password }),
-        });
-        if (response.ok) {
+        try {
+            await register({ username, phone, password });
             router.push('/login');
-        } else {
-            alert('ثبت‌نام ناموفق');
+        } catch (error) {
+            // خطاها توسط Interceptor مدیریت می‌شوند
         }
     };
 
