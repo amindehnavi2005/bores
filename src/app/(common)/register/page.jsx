@@ -4,6 +4,7 @@ import { TextField, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { register } from '@/lib/routes/auth';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');

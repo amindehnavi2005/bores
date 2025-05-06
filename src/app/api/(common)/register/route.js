@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server';
 import connectMongoDB from '@/lib/mongodb';
 
 export async function POST(request) {
-    console.log('API route called');
     try {
         const { username, phone, password } = await request.json();
 

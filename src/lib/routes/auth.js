@@ -8,7 +8,7 @@ export const register = async (data) => {
 
 export const login = async (data) => {
     const response = await api.post('/login', data);
-    if (typeof window !== 'undefined' && response.data.token) {
+    if (response.data.token) {
         Cookies.set('token', response.data.token);
         Cookies.set('expires_in', response.data.expires_in || Date.now() + 86400000);
     }
@@ -16,9 +16,7 @@ export const login = async (data) => {
 };
 
 export const logout = async () => {
-    if (typeof window !== 'undefined') {
-        Cookies.remove('token');
-        Cookies.remove('expires_in');
-    }
+    Cookies.remove('token');
+    Cookies.remove('expires_in');
     return { message: 'خروج با موفقیت انجام شد' };
 };

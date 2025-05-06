@@ -7,6 +7,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
+    console.log("User => ", user);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

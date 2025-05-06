@@ -39,9 +39,9 @@ export async function POST(request) {
         // ذخیره توکن در کوکی
         const headers = {
             'Set-Cookie': cookie.serialize('token', token, {
-                httpOnly: true,
+                httpOnly: false,
                 secure: process.env.NODE_ENV === 'production',
-                maxAge: 86400, // 1 روز
+                maxAge: 86400,
                 sameSite: 'strict',
                 path: '/',
             }),
