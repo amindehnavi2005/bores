@@ -46,6 +46,7 @@ api.interceptors.response.use(
                 toast.error(error.response.data.message);
             }
         } else {
+            console.error(error);
             toast.error('خطای سیستمی');
         }
         return Promise.reject(error);

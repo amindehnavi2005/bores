@@ -1,11 +1,12 @@
 "use client";
 import { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { login } from '@/lib/routes/auth';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -45,12 +46,12 @@ const LoginPage = () => {
                     margin="normal"
                     variant="outlined"
                 />
+                <Typography textAlign={"center"} my={2}>آیا حساب کاربری ندارید؟ <Link href={"/register"} className='text-accent'>ثبت نام</Link></Typography>
                 <Button
                     type="submit"
                     variant="contained"
-                    color="primary"
+                    color="error"
                     fullWidth
-                    className="bg-secondary hover:bg-secondary-dark"
                 >
                     ورود
                 </Button>

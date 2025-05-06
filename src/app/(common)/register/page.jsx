@@ -1,8 +1,9 @@
 "use client";
 import { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { register } from '@/lib/routes/auth';
+import Link from 'next/link';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
@@ -63,12 +64,12 @@ const RegisterPage = () => {
                     margin="normal"
                     variant="outlined"
                 />
+                <Typography textAlign={"center"} my={2}>قبلا ثبت نام کرده اید؟ <Link href={"/login"} className='text-accent'>ورود</Link></Typography>
                 <Button
                     type="submit"
                     variant="contained"
-                    color="primary"
+                    color="error"
                     fullWidth
-                    className="bg-secondary hover:bg-secondary-dark"
                 >
                     ثبت‌نام
                 </Button>
