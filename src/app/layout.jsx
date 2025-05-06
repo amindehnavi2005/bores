@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen flex flex-col">
         <AuthProvider>
           <Header />
-          <main className="flex-grow p-4">{children}</main>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </AuthProvider>
         <ToastContainer position="bottom-right" autoClose={3000} />
