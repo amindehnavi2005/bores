@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 
 const api = axios.create({
@@ -8,7 +9,7 @@ const api = axios.create({
 api.interceptors.request.use(
     (config) => {
         if (config.requiresAuth) {
-            const token = typeof window !== 'undefined' ? window.localStorage.getItem('token') : null;
+            const token = Cookies.get('token');
             if (token) {
                 config.headers.Authorization = `Bearer ${token}`;
             } else {
@@ -31,8 +32,7 @@ api.interceptors.response.use(
             if (error.response.status === 401) {
                 toast.error('توکن شما منقضی شده است. لطفاً دوباره وارد شوید.');
                 if (typeof window !== 'undefined') {
-                    window.localStorage.removeItem('token');
-                    window.localStorage.removeItem('expires_in');
+                    Cookies.remove('token');
                     window.location.href = '/login';
                 }
             } else if (error.response.data.errors) {
