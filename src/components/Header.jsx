@@ -33,10 +33,10 @@ const Header = () => {
                 </div>
                 {/* Navigation links */}
                 <div className={`flex-col md:flex md:flex-row md:space-x-4 ${mobileMenuOpen ? 'flex' : 'hidden'} md:flex absolute md:static top-16 left-0 w-full md:w-auto bg-primary md:bg-transparent p-4 md:p-0`}>
-                    <Link href="/" className="hover:underline py-2 md:py-0">صفحه اصلی</Link>
-                    <Link href="/appointments" className="hover:underline py-2 md:py-0">لیست نوبت‌ها</Link>
-                    <Link href="/about" className="hover:underline py-2 md:py-0">درباره ما</Link>
-                    <Link href="/contact" className="hover:underline py-2 md:py-0">تماس با ما</Link>
+                    <Link href="/" className="hover:text-accent py-2 md:py-0">صفحه اصلی</Link>
+                    <Link href="/appointments" className="hover:text-accent py-2 md:py-0">لیست نوبت‌ها</Link>
+                    <Link href="/about" className="hover:text-accent py-2 md:py-0">درباره ما</Link>
+                    <Link href="/contact" className="hover:text-accent py-2 md:py-0">تماس با ما</Link>
                 </div>
                 {/* User menu */}
                 <div>
