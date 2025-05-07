@@ -15,6 +15,15 @@ export const login = async (data) => {
     return response.data;
 };
 
+export const me = async () => {
+    const response = await api.get(`/me`, { requiresAuth: true });
+    if (response.data.token) {
+        Cookies.set('token', response.data.token);
+        Cookies.set('expires_in', response.data.expires_in || Date.now() + 86400000);
+    }
+    return response;
+};
+
 export const logout = async () => {
     Cookies.remove('token');
     Cookies.remove('expires_in');
