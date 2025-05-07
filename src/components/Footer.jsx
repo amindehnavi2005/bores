@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="text-center mt-6 text-sm">
-                <p>© 2025 سامانه نوبت‌دهی آرایشگاه. همه حقوق محفوظ است.</p>
+                <p>© این وبسایت متعلق به <span className="text-accent">امین دهنوی</span> میباشد</p>
             </div>
         </footer>
     );
