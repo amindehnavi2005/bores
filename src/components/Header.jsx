@@ -8,7 +8,6 @@ import { AuthContext } from '../context/AuthContext';
 
 const Header = () => {
     const pathname = usePathname();
-    console.log("PathName => ", pathname)
     const { user } = useContext(AuthContext);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
