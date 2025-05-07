@@ -30,12 +30,9 @@ export const UserDropdown = ({ user }) => {
             </Button>
             <Menu
                 anchorEl={anchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 keepMounted
-                transformOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
-                style={{ marginTop: "4%" }}
             >
                 <MenuItem onClick={handleClose}>پروفایل</MenuItem>
                 <MenuItem onClick={() => { logout(); handleClose(); }}>خروج</MenuItem>
