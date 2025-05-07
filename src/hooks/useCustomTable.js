@@ -55,11 +55,10 @@ const useCustomTable = (columns, data, { isLoading = false, onDownloadCsv, ...op
                     alignItems: "center",
                     justifyContent: "center",
                     height: "100%",
-                    color: "text.secondary",
                     padding: "25px",
                 }}
             >
-                <img src="/images/icons/no-results.svg" alt="داده ای وجود ندارد" className={"h-36"} />
+                <img src="/assets/images/no-results.svg" alt="داده ای وجود ندارد" className={"h-36"} />
                 <div>هیچ داده‌ای جهت نمایش وجود ندارد</div>
             </Box>
         ),
@@ -88,17 +87,6 @@ const useCustomTable = (columns, data, { isLoading = false, onDownloadCsv, ...op
             },
         },
         paginationDisplayMode: "pages",
-        muiTableBodyCellProps: {
-            className: "bg-backgroundPaper",
-            sx: {
-                textAlign: "center",
-                padding: "2px 8px",
-                lineHeight: "1",
-            },
-        },
-        // onGlobalFilterChange: (globalFilter) => {
-        //   setGlobalFilter(globalFilter);
-        // },
     };
 
     return useMaterialReactTable({

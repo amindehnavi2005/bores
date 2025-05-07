@@ -11,6 +11,7 @@ import { Add, Close } from '@mui/icons-material';
 import DatePicker from "react-multi-date-picker"
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
+import { getAppointments } from '@/lib/routes/stylist';
 
 moment.updateLocale('fa', {
     week: {
@@ -21,6 +22,7 @@ moment.updateLocale('fa', {
 
 const SubmitAppointmentPage = () => {
     const [currentWeekStart, setCurrentWeekStart] = useState(moment().startOf('week'));
+    const [dateValue, setDateValue] = useState(moment().startOf('day'));
     const [selectedDate, setSelectedDate] = useState(moment().startOf('day'));
     const [appointments, setAppointments] = useState([]);
     const [openDialog, setOpenDialog] = useState(false);
@@ -40,7 +42,7 @@ const SubmitAppointmentPage = () => {
 
     const fetchAppointments = async () => {
         try {
-            const response = await api.get(`/api/stylist/appointments?date=${selectedDate.format('jYYYY/jMM/jDD')}`, { requiresAuth: true });
+            const response = getAppointments();
             setAppointments(response.data);
         } catch (error) {
             // خطاها توسط Interceptor مدیریت می‌شوند
@@ -49,7 +51,7 @@ const SubmitAppointmentPage = () => {
 
     const fetchServices = async () => {
         try {
-            const response = await api.get('/api/stylist/services', { requiresAuth: true });
+            const response = await api.get('/stylist/services', { requiresAuth: true });
             setServices(response.data);
         } catch (error) {
             // خطاها توسط Interceptor مدیریت می‌شوند
@@ -68,7 +70,7 @@ const SubmitAppointmentPage = () => {
 
     function handleChangeDate(value) {
         //تغییرات روی تاریخ رو اینجا اعمال کنید
-        setSelectedDate(value)
+        setDateValue(value)
     }
 
     const handleServiceChange = async (event) => {
@@ -96,7 +98,7 @@ const SubmitAppointmentPage = () => {
                 time: formData.time,
                 serviceId: formData.service,
             };
-            await api.post('/api/stylist/appointments', appointmentData, { requiresAuth: true });
+            await api.post('/stylist/appointments', appointmentData, { requiresAuth: true });
             setOpenDialog(false);
             fetchAppointments();
         } catch (error) {
@@ -143,7 +145,7 @@ const SubmitAppointmentPage = () => {
                 ]}
                 data={appointments}
             />
-            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+            <Dialog open={openDialog}>
                 <Box display={"flex"} justifyContent={"space-between"} alignContent={"center"} px={5} pt={2}>
                     <Button onClick={() => setOpenDialog(false)} size='small' style={{ borderRadius: "50%" }}><Close /></Button>
                     <DialogTitle>ثبت نوبت جدید</DialogTitle>
@@ -157,10 +159,12 @@ const SubmitAppointmentPage = () => {
                         margin="normal"
                     />
                     <DatePicker
-                        value={selectedDate}
+                        value={dateValue}
                         onChange={handleChangeDate}
                         calendar={persian}
                         locale={persian_fa}
+                        hideYear
+                        hideMonth
                     />
                     {/* <TextField
                         label="تاریخ"
