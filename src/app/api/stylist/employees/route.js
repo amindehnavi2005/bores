@@ -1,7 +1,7 @@
+import jwt from 'jsonwebtoken';
+import Employee from '@/models/Employee';
 import { NextResponse } from 'next/server';
 import connectMongoDB from '@/lib/mongodb';
-import Employee from '@/models/Employee';
-import jwt from 'jsonwebtoken';
 
 export async function GET(request) {
     try {
