@@ -45,9 +45,12 @@ const Header = () => {
                             <Button
                                 onClick={handleMenu}
                                 variant='contained'
-                                color='error'
+                                color='inherit'
+                                style={{ borderRadius: "100px" }}
                             >
-                                {user.username}
+                                <span className='text-black'>
+                                    {user.username}
+                                </span>
                             </Button>
                             <Menu
                                 id="menu-appbar"
@@ -57,6 +60,7 @@ const Header = () => {
                                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
+                                style={{ marginTop: "4%", width: "100%" }}
                             >
                                 <MenuItem onClick={handleClose}>پروفایل</MenuItem>
                                 <MenuItem onClick={() => { logout(); handleClose(); }}>خروج</MenuItem>
