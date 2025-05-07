@@ -7,7 +7,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
-    console.log("User => ", user);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -43,16 +42,13 @@ const Header = () => {
                 <div>
                     {user ? (
                         <>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
+                            <Button
                                 onClick={handleMenu}
-                                color="inherit"
+                                variant='contained'
+                                color='error'
                             >
-                                <AccountCircle />
-                            </IconButton>
+                                {user.username}
+                            </Button>
                             <Menu
                                 id="menu-appbar"
                                 anchorEl={anchorEl}
