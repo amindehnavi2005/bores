@@ -15,5 +15,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/stylist/:path*', '/customer/:path*'], // مسیرهای پنل آرایشگر و مشتری
+    matcher: ['/stylist/:path*', '/customer/:path*']
 };

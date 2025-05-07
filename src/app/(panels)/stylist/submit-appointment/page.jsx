@@ -113,7 +113,7 @@ const SubmitAppointmentPage = () => {
                             key={day.format('jYYYY/jMM/jDD')}
                             variant={day.isSame(selectedDate, 'day') ? 'contained' : 'outlined'}
                             onClick={() => setSelectedDate(day)}
-                            style={{borderRadius: '50px'}}
+                            style={{ borderRadius: '50px' }}
                             className={day.isSame(selectedDate, 'day') ? 'bg-mint' : 'bg-periwinkle'}
                         >
                             {day.format('dddd DD')}
