@@ -1,7 +1,8 @@
 "use client";
 import Cookies from 'js-cookie';
-import { logout } from '@/lib/routes/auth';
+import { logout, me } from '@/lib/routes/auth';
 import { createContext, useState, useEffect } from 'react';
+import api from '@/lib/routes/axiosInterceptor';
 
 export const AuthContext = createContext();
 
@@ -9,13 +10,17 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [role, setRole] = useState(null);
 
-    useEffect(() => {
+    const fetchUser = async () => {
         const token = Cookies.get('token');
         if (token) {
-            // فرضاً اطلاعات کاربر از توکن یا API دریافت می‌شود
-            setUser({ username: 'user' }); // باید با API واقعی جایگزین شود
-            setRole('customer'); // باید با API واقعی جایگزین شود
+            const user = await me();
+            setUser({ username: user?.data?.user?.username });
+            setRole('customer');
         }
+    }
+
+    useEffect(() => {
+        fetchUser();
     }, []);
 
     const login = (userData, userRole) => {
