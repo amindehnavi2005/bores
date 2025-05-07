@@ -2,21 +2,12 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import Link from 'next/link';
-import { Menu, MenuItem, IconButton, Button } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Button } from '@mui/material';
+import { UserDropdown } from './UserDropdown';
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
-    const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
@@ -41,31 +32,7 @@ const Header = () => {
                 {/* User menu */}
                 <div>
                     {user ? (
-                        <>
-                            <Button
-                                onClick={handleMenu}
-                                variant='contained'
-                                color='inherit'
-                                style={{ borderRadius: "100px" }}
-                            >
-                                <span className='text-black'>
-                                    {user.username}
-                                </span>
-                            </Button>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                keepMounted
-                                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                style={{ marginTop: "4%", width: "100%" }}
-                            >
-                                <MenuItem onClick={handleClose}>پروفایل</MenuItem>
-                                <MenuItem onClick={() => { logout(); handleClose(); }}>خروج</MenuItem>
-                            </Menu>
-                        </>
+                        <UserDropdown user={user} />
                     ) : (
                         <Button className="text-center rounded-full" variant='contained' color='error'>
                             <Link href={"/login"}>ورود / ثبت نام</Link>
