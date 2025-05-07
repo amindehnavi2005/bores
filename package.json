@@ -29,6 +29,7 @@
     "npm": "^11.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-multi-date-picker": "^4.5.2",
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {

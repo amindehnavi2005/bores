@@ -4,10 +4,13 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import moment from 'moment';
 import 'moment-jalaali';
-import { Button, Dialog, DialogTitle, DialogContent, TextField, Select, MenuItem } from '@mui/material';
+import { Button, Dialog, DialogTitle, DialogContent, TextField, Select, MenuItem, Box, IconButton } from '@mui/material';
 import api from '@/lib/routes/axiosInterceptor';
 import { MaterialReactTable } from 'material-react-table';
-import { Add } from '@mui/icons-material';
+import { Add, Close } from '@mui/icons-material';
+import DatePicker from "react-multi-date-picker"
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
 
 moment.updateLocale('fa', {
     week: {
@@ -62,6 +65,11 @@ const SubmitAppointmentPage = () => {
         });
         setOpenDialog(true);
     };
+
+    function handleChangeDate(value) {
+        //تغییرات روی تاریخ رو اینجا اعمال کنید
+        setSelectedDate(value)
+    }
 
     const handleServiceChange = async (event) => {
         const serviceId = event.target.value;
@@ -136,7 +144,10 @@ const SubmitAppointmentPage = () => {
                 data={appointments}
             />
             <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-                <DialogTitle>ثبت نوبت جدید</DialogTitle>
+                <Box display={"flex"} justifyContent={"space-between"} alignContent={"center"} px={5} pt={2}>
+                    <Button onClick={() => setOpenDialog(false)} size='small' style={{ borderRadius: "50%" }}><Close /></Button>
+                    <DialogTitle>ثبت نوبت جدید</DialogTitle>
+                </Box>
                 <DialogContent>
                     <TextField
                         label="نام مشتری"
@@ -145,24 +156,19 @@ const SubmitAppointmentPage = () => {
                         fullWidth
                         margin="normal"
                     />
-                    <TextField
+                    <DatePicker
+                        value={selectedDate}
+                        onChange={handleChangeDate}
+                        calendar={persian}
+                        locale={persian_fa}
+                    />
+                    {/* <TextField
                         label="تاریخ"
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                         fullWidth
                         margin="normal"
                     />
-                    <Select
-                        label="خدمت"
-                        value={formData.service}
-                        onChange={handleServiceChange}
-                        fullWidth
-                        margin="normal"
-                    >
-                        {services.map(service => (
-                            <MenuItem key={service.id} value={service.id}>{service.name}</MenuItem>
-                        ))}
-                    </Select>
                     <TextField
                         label="ساعت"
                         value={formData.time}
@@ -175,9 +181,20 @@ const SubmitAppointmentPage = () => {
                         {availableTimes.map(time => (
                             <MenuItem key={time} value={time}>{time}</MenuItem>
                         ))}
-                    </TextField>
-                    <Button onClick={handleSubmit} className="mt-4 bg-mint hover:bg-mint-dark">ثبت</Button>
-                    <Button onClick={() => setOpenDialog(false)} className="mt-4 ml-2">انصراف</Button>
+                    </TextField> */}
+                    <Select
+                        label="خدمت"
+                        value={formData.service}
+                        onChange={handleServiceChange}
+                        fullWidth
+                        margin="normal"
+                    >
+                        {services.map(service => (
+                            <MenuItem key={service.id} value={service.id}>{service.name}</MenuItem>
+                        ))}
+                    </Select>
+                    <Button onClick={handleSubmit} variant='contained' style={{ marginTop: "5%" }}>ثبت</Button>
+                    {/* <Button onClick={() => setOpenDialog(false)} className="mt-4 ml-2">انصراف</Button> */}
                 </DialogContent>
             </Dialog>
         </div>
