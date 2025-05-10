@@ -35,7 +35,7 @@ export const UserDropdown = ({ user }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}><Link href={"/stylist"}>پنل کاربری من</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link href={"/stylist/submit-appointment"}>پنل کاربری من</Link></MenuItem>
                 <MenuItem onClick={() => { logout(); handleClose(); }}>خروج</MenuItem>
             </Menu>
         </>
