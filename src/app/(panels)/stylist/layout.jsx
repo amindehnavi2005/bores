@@ -1,4 +1,3 @@
-import { Sidebar } from '@/components/stylist/Sidebar';
 
 export const metadata = {
     title: 'پنل آرایشگر',
@@ -8,7 +7,7 @@ export const metadata = {
 export default function StylistLayout({ children }) {
     return (
         <>
-            <Sidebar />
+            {/* <Sidebar /> */}
             {children}
         </>
     );

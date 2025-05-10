@@ -8,12 +8,50 @@ import { AuthContext } from '@/context/AuthContext';
 
 const Header = () => {
     const pathname = usePathname();
-    const { user } = useContext(AuthContext);
+    const { user, role } = useContext(AuthContext);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
     };
+
+    // منوی پیش‌فرض برای کاربران مهمان
+    const defaultMenuItems = [
+        { title: 'صفحه اصلی', path: '/' },
+        { title: 'درباره ما', path: '/about' },
+        { title: 'تماس با ما', path: '/contact' },
+    ];
+
+    // منوی مخصوص آرایشگر
+    const stylistMenuItems = [
+        { title: 'صفحه اصلی', path: '/' },
+        { title: 'ثبت نوبت', path: '/stylist/submit-appointment' },
+        { title: 'مشتریان', path: '/stylist/customers' },
+        { title: 'کارمندان', path: '/stylist/employees' },
+    ];
+
+    // منوی مخصوص مشتری
+    const customerMenuItems = [
+        { title: 'صفحه اصلی', path: '/' },
+        { title: 'نوبت‌های من', path: '/customer/appointments' },
+        { title: 'رزرو نوبت', path: '/customer/book-appointment' },
+        { title: 'پروفایل', path: '/customer/profile' },
+    ];
+
+    // انتخاب منوی مناسب بر اساس نقش کاربر
+    const getMenuItems = () => {
+        if (!user) return defaultMenuItems;
+        switch (role) {
+            case 'stylist':
+                return stylistMenuItems;
+            case 'customer':
+                return customerMenuItems;
+            default:
+                return defaultMenuItems;
+        }
+    };
+
+    const menuItems = getMenuItems();
 
     return (
         <header className="bg-primary text-white p-4">
@@ -25,11 +63,17 @@ const Header = () => {
                     </button>
                 </div>
                 {/* Navigation links */}
-                <div className={`flex-col md:flex md:flex-row md:space-x-4 ${mobileMenuOpen ? 'flex' : 'hidden'} md:flex absolute md:static top-16 left-0 w-full md:w-auto bg-primary md:bg-transparent p-4 md:p-0`}>
-                    <Link href="/" className={`hover:text-secondary ${pathname == "/" && "text-accent"} py-2 md:py-0`}>صفحه اصلی</Link>
-                    <Link href="/appointments" className={`hover:text-secondary ${pathname == "/appointments" && "text-accent"} py-2 md:py-0`}>لیست نوبت‌ها</Link>
-                    <Link href="/about" className={`hover:text-secondary ${pathname == "/about" && "text-accent"} py-2 md:py-0`}>درباره ما</Link>
-                    <Link href="/contact" className={`hover:text-secondary ${pathname == "/contact" && "text-accent"} py-2 md:py-0`}>تماس با ما</Link>
+                <div className={`z-10 flex-col md:flex md:flex-row md:space-x-4 ${mobileMenuOpen ? 'flex' : 'hidden'} md:flex absolute md:static top-16 left-0 w-full md:w-auto bg-primary md:bg-transparent p-4 md:p-0`}>
+                    {menuItems.map((item) => (
+                        <Link
+                            key={item.path}
+                            href={item.path}
+                            className={`hover:text-secondary ${pathname === item.path ? "text-accent" : ""} py-2 md:py-0`}
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            {item.title}
+                        </Link>
+                    ))}
                 </div>
                 {/* User menu */}
                 <div>
