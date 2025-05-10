@@ -59,7 +59,7 @@ const useCustomTable = (columns, data, { isLoading = false, onDownloadCsv, ...op
                 }}
             >
                 <img src="/assets/images/no-results.svg" alt="داده ای وجود ندارد" className={"h-36"} />
-                <div>هیچ داده‌ای جهت نمایش وجود ندارد</div>
+                <div>هیچ داده‌ای جهت نمایش وجود ندارد.</div>
             </Box>
         ),
         muiSkeletonProps: {

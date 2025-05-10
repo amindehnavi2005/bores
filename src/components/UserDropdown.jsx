@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { logout } from '@/lib/routes/auth';
 import { Button, Menu, MenuItem } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
+import Link from 'next/link';
 
 export const UserDropdown = ({ user }) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -34,7 +35,7 @@ export const UserDropdown = ({ user }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>پروفایل</MenuItem>
+                <MenuItem onClick={handleClose}><Link href={"/stylist"}>پنل کاربری من</Link></MenuItem>
                 <MenuItem onClick={() => { logout(); handleClose(); }}>خروج</MenuItem>
             </Menu>
         </>
